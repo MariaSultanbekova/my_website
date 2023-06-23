@@ -1,0 +1,11 @@
+.camera-unavailable-message {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 25px;
+        text-transform: uppercase;
+        font-weight: bold;
+        height: 100%;
+        margin-left: 200px;
+        color: rgb(202, 46, 46);
+}

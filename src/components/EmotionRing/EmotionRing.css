@@ -1,0 +1,19 @@
+.emotion-ring {
+        width: 800px;
+        height: 800px;
+}
+
+.emotion-svg {
+        width: 100%;
+        height: 100%;
+}
+
+.emotion-zone {
+        fill: white;
+}
+
+.emotion-label {
+        font-size: 15px;
+        fill: white;
+        text-anchor: middle;
+}
