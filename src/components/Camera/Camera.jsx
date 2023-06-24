@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setEmotion } from '../../slices/emoSet';
+import { setCoordinates, setEmotion } from '../../slices/emoSet';
 import axios from 'axios';
 import CameraWarning from './CameraWarning';
 
@@ -19,7 +19,7 @@ const CameraComponent = () => {
                                 videoRef.current.play();
 
                                 // Установка интервала для получения кадров каждые 5 секунд
-                                intervalId = setInterval(captureFrame, 2000);
+                                intervalId = setInterval(captureFrame, 1000);
                         } catch (error) {
                                 console.error('Ошибка получения видео с камеры:', error);
                                 setCameraAvailable(false);
@@ -55,12 +55,13 @@ const CameraComponent = () => {
                         formData.append('file', blob, 'frame.jpg');
 
                         try {
-                                const response = await axios.post('https://ai-project-21.ru/predict_emotion', formData);
+                                const response = await axios.post('http://127.0.0.1:8000/predict_emotion', formData);
 
                                 if (response.status === 200) {
                                         const result = response.data;
 
                                         dispatch(setEmotion(result.emotion));
+                                        dispatch(setCoordinates(result.coordinates))
                                 } else {
                                         console.error('Ошибка при загрузке кадра на сервер:', response.status);
                                 }
